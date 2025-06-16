@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TaskhubApplication<taskhub>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.shiro.TaskhubApplication",
+            "projectName": "taskhub",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
