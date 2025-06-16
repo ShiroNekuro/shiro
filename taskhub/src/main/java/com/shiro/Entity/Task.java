@@ -1,4 +1,6 @@
 package com.shiro.Entity;
+import java.sql.Date;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,6 +20,8 @@ public class Task {
     private String name;
 
     private String description;
+
+    private Date deadline;
 
     @OneToOne(cascade= CascadeType.ALL)
     @JoinColumn(name="iduser")
@@ -41,6 +45,14 @@ public class Task {
 
     public void setDesc(String desc){
         this.description = desc;
+    }
+
+    public Date getDeadline(){
+        return this.deadline;
+    }
+
+    public void setDeadline(Date date){
+        this.deadline = date;
     }
 
     public User getAssignee(){
