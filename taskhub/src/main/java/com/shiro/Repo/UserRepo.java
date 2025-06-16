@@ -1,0 +1,8 @@
+package com.shiro.Repo;
+import org.springframework.data.repository.CrudRepository;
+
+import com.shiro.Entity.User;
+
+public interface  UserRepo extends CrudRepository<User, Integer> {
+    
+}
