@@ -1,7 +1,5 @@
 package com.shiro.Service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,10 +25,6 @@ public class TaskService {
 
     public void deleteTask(int id){
         repo.deleteById(id);
-    }
-
-    public Optional<Task> findAssigned(int id){
-        return repo.findById(id);
     }
 
     public void updateTask(Task task){

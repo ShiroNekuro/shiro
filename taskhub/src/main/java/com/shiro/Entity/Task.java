@@ -8,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Task {
@@ -19,14 +19,17 @@ public class Task {
 
     @Column(length=200)
     private String name;
-
+    
+    @Column(name = "description")
     private String description;
 
+    @Column(name = "deadline")
     private Date deadline;
 
-    @OneToOne(cascade= CascadeType.ALL)
+    
+    @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name="iduser")
-    private User assignee;
+    private User iduser;
 
 
     // Setter and Getter
@@ -59,6 +62,6 @@ public class Task {
     }
 
     public User getAssignee(){
-        return this.assignee;
+        return this.iduser;
     }
 }

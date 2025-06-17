@@ -8,16 +8,13 @@ import org.springframework.stereotype.Service;
 import com.shiro.Entity.User;
 import com.shiro.Repo.UserRepo;
 
-import jakarta.transaction.Transactional;
-
 @Service
-@Transactional
 public class UserService {
 
     @Autowired
     private UserRepo repo;
 
-    public Iterable<User> findAll(){
+    public Iterable<User> findAlluser(){
         return repo.findAll();
     }
 
