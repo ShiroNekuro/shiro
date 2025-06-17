@@ -12,8 +12,14 @@ public class User {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int iduser;
 
-    @Column(length=150)
+    @Column(length=80)
     private String name;
+
+    @Column(length=32)
+    private String username;
+
+    @Column(length=20)
+    private String password;
 
     @Column(length=20)
     private String role;
@@ -27,6 +33,22 @@ public class User {
 
     public void setId(int id){
         this.iduser = id;
+    }
+
+    public String getUsername(){
+        return this.username;
+    }
+
+    public void setUsername(String uname){
+        this.username = uname;
+    } 
+
+    public String getPassword(){
+        return this.password;
+    }
+
+    public void setPassword(String pw){
+        this.password = pw;
     }
 
     public String getName(){

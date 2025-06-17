@@ -33,4 +33,8 @@ public class UserService {
     public void updateUser(User user){
         repo.save(user);
     }
+
+    public User findByUsernameAndPassword(String username, String password){
+        return repo.findByUsernameAndPassword(username, password);
+    }
 }

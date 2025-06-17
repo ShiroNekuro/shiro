@@ -37,6 +37,10 @@ public class Task {
         return this.idtask;
     }
 
+    public void setId(int id){
+        this.idtask = id;
+    }
+
     public String getName(){
         return this.name;
     }
@@ -63,5 +67,9 @@ public class Task {
 
     public User getAssignee(){
         return this.iduser;
+    }
+
+    public void setAssignee(User user){
+        this.iduser = user;
     }
 }
