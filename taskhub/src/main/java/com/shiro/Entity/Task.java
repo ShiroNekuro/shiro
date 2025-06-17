@@ -12,6 +12,7 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Task {
+    
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int idtask;
@@ -27,6 +28,8 @@ public class Task {
     @JoinColumn(name="iduser")
     private User assignee;
 
+
+    // Setter and Getter
     public Integer getId(){
         return this.idtask;
     }
