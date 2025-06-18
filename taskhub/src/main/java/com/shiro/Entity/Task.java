@@ -28,8 +28,8 @@ public class Task {
 
     
     @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="iduser")
-    private User iduser;
+    @JoinColumn(name="assignee")
+    private User assignee;
 
 
     // Setter and Getter
@@ -66,10 +66,10 @@ public class Task {
     }
 
     public User getAssignee(){
-        return this.iduser;
+        return this.assignee;
     }
 
     public void setAssignee(User user){
-        this.iduser = user;
+        this.assignee = user;
     }
 }

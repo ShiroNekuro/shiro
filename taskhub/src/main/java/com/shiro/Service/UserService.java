@@ -41,4 +41,7 @@ public class UserService {
     public User findByUsername(String username){
         return repo.findByUsername(username);
     }
+    public Iterable<User> findByRole(String role){
+        return repo.findByRole(role);
+    }
 }

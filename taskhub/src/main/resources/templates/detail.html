@@ -11,16 +11,14 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>#</th>
                     <th>Name</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="x : ${users}">
+                <tr th:each="x : ${usertask}">
                     <td th:text="${x.id}"></td>
                     <td th:text="${x.name}"></td>
-                    <td><a th:href="@{'/detail/'+${x.id}}"><button class="btn btn-primary" >Details</button></a></td>
                 </tr>
             </tbody>
         </table>

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.shiro.Service.TaskService;
 import com.shiro.Service.UserService;
 
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("")
@@ -20,11 +22,17 @@ public class HomeController {
     private TaskService taskService;
 
     @GetMapping
-    public String welcome(Model model){
-        model.addAttribute("msg", "Testing");
-        model.addAttribute("users", userService.findAlluser());
-        model.addAttribute("tasks", taskService.findAll());
-        model.addAttribute("find", 1);
-        return "index";
+    public String welcome(HttpSession session, Model model){
+        String role =(String) session.getAttribute("userrole");
+        if(role.equals("admin")){
+            return "redirect:/adminhome";
+        } else {
+            model.addAttribute("role", role);
+            model.addAttribute("msg", "Testing");
+            model.addAttribute("users", userService.findAlluser());
+            model.addAttribute("tasks", taskService.findAll());
+            model.addAttribute("find", 1);
+            return "index";
+        }
     }    
 }
