@@ -9,7 +9,6 @@
 <body>
     <div class="container">
         <p th:text="${user.name}+'`s Task'"></p>
-        <a th:href="@{'/addtask/'+${user.id}}"><button class="btn btn-success">Add Task</button></a>
         <table class="table">
             <thead>
                 <tr>

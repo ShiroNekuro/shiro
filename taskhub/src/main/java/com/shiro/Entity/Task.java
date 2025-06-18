@@ -15,7 +15,7 @@ public class Task {
     
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int idtask;
+    private Integer idtask;
 
     @Column(length=200)
     private String name;
@@ -37,7 +37,7 @@ public class Task {
         return this.idtask;
     }
 
-    public void setId(int id){
+    public void setId(Integer id){
         this.idtask = id;
     }
 

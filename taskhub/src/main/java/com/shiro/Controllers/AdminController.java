@@ -7,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.shiro.Entity.Task;
 import com.shiro.Entity.User;
 import com.shiro.Service.TaskService;
 import com.shiro.Service.UserService;
+
 
 @Controller
 public class AdminController {
@@ -28,9 +31,28 @@ public class AdminController {
 
     @GetMapping("/detail/{id}")
     public String detail(Model model, @PathVariable("id") int id){
-        Optional<User> user = userService.findById(id);
+        Optional<User> userOptional = userService.findById(id);
+        User user = userOptional.get();
         model.addAttribute("user", user);
-        model.addAttribute("usertask", taskService.findByAssignee(user));
+        model.addAttribute("usertask", taskService.findByAssignee(userOptional));
         return "detail";
+    }
+
+    @GetMapping("/addtask/{id}")
+    public String addtaskform(@PathVariable("id") int id, Model model){
+
+        model.addAttribute("id", id);
+        model.addAttribute("task", new Task());
+        return "addtask";
+    }
+
+    @PostMapping("/addtask/{id}")
+    public String addtask(@PathVariable("id") int id, Task task, Model model) {
+        Optional<User> userOptional = userService.findById(id);
+        User user = userOptional.get();
+        task.setAssignee(user);
+        task.setId(null);
+        taskService.addTask(task);
+        return "redirect:/detail/{id}";
     }
 }

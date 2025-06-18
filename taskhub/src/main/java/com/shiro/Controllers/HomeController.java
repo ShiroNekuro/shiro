@@ -23,7 +23,12 @@ public class HomeController {
 
     @GetMapping
     public String welcome(HttpSession session, Model model){
+
         String role =(String) session.getAttribute("userrole");
+        Boolean loginstatus = (Boolean) session.getAttribute("loginstatus");
+        if(loginstatus.equals(false)){
+            return "redirect:/login";
+        }
         if(role.equals("admin")){
             return "redirect:/adminhome";
         } else {
