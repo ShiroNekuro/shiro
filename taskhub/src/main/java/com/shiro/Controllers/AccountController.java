@@ -29,6 +29,7 @@ public class AccountController {
             session.setAttribute("userrole", user.getRole());
             session.setAttribute("accname", user.getName());
             session.setAttribute("account", user);
+            session.setAttribute("loginstatus", true);
             return "redirect:";
         } else {
             model.addAttribute("error", "Username atau Password salah");
@@ -48,7 +49,7 @@ public class AccountController {
             model.addAttribute("error", "Username sudah digunakan");
             return "register";
         }
-
+        
         user.setRole("user");
         userService.addUser(user);
         return "test";
