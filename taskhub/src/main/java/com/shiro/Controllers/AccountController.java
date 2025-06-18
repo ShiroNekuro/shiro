@@ -18,9 +18,8 @@ public class AccountController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/loginform")
+    @GetMapping("/login")
     public String loginpage(Model model, HttpSession session){
-        model.addAttribute("error", session.getAttribute("error"));
         return "test";
     }
     @PostMapping("/login")
@@ -28,11 +27,28 @@ public class AccountController {
         User user = userService.findByUsernameAndPassword(username, password);
         if(user != null){
             session.setAttribute("account", user);
-            session.setAttribute("error", null);
             return "redirect:";
         } else {
-            session.setAttribute("error", "Username atau Password salah");
-            return "redirect:/loginform";
+            model.addAttribute("error", "Username atau Password salah");
+            return "test";
         }
+    }
+
+    @GetMapping("/register")
+    public String registerpage(Model model){
+        model.addAttribute("user", new User());
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String register(User user,Model model){
+        if (userService.findByUsername(user.getUsername()) != null) {
+            model.addAttribute("error", "Username sudah digunakan");
+            return "register";
+        }
+
+        user.setRole("user");
+        userService.addUser(user);
+        return "test";
     }
 }
