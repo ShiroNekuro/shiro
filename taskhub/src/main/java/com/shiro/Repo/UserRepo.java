@@ -5,4 +5,5 @@ import com.shiro.Entity.User;
 
 public interface  UserRepo extends CrudRepository<User, Integer> {
     User findByUsernameAndPassword(String username, String password);
+    User findByUsername(String username);
 }
