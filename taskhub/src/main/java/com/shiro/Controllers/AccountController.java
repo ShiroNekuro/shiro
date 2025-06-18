@@ -26,6 +26,8 @@ public class AccountController {
     public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model){
         User user = userService.findByUsernameAndPassword(username, password);
         if(user != null){
+            session.setAttribute("userrole", user.getRole());
+            session.setAttribute("accname", user.getName());
             session.setAttribute("account", user);
             return "redirect:";
         } else {
