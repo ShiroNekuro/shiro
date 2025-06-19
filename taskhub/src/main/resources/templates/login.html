@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login - TaskHub</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/images/logo/favicon.png}" />
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/file-upload.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/plyr.css}" />
+    <link rel="stylesheet" th:href="@{https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/full-calendar.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/jquery-ui.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/editor-quill.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/apexcharts.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/calendar.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/jquery-jvectormap-2.0.5.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+
+      <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #000000, #ffffff, #FFD700);
+            min-height: 100vh;
+        }
+
+        .auth {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-right__inner {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .auth-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader">
+    <div class="loader"></div>
+</div>
+
+<div class="side-overlay"></div>
+
+<section class="auth d-flex">
+    <div class="auth-right py-40 px-24 flex-center flex-column">
+        <div class="auth-right__inner mx-auto w-100">
+            <a href="#" class="auth-right__logo">
+                <img th:src="@{/assets/images/logo/logo.png}" alt="logo" />
+            </a>
+            <h2 class="mb-8">Selamat Datang 👋</h2>
+            <p class="text-gray-600 text-15 mb-32">
+                Silakan login untuk mengakses TaskHub
+            </p>
+            <div th:if="${param.logout}" class="alert alert-info mb-16">
+                Anda telah logout.
+            </div>
+            <form th:action="@{/login}" method="post">
+                <div class="mb-24">
+                    <label for="username" class="form-label mb-8 h6">Username</label>
+                    <div class="position-relative">
+                        <input type="text" name="username" class="form-control py-11 ps-40" placeholder="Masukkan username" required />
+                        <span class="position-absolute top-50 translate-middle-y ms-16 text-gray-600">
+                            <i class="ph ph-user"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-24">
+                    <label for="password" class="form-label mb-8 h6">Password</label>
+                    <div class="position-relative">
+                        <input type="password" name="password" class="form-control py-11 ps-40" placeholder="Masukkan password" required />
+                        <span class="position-absolute top-50 translate-middle-y ms-16 text-gray-600">
+                            <i class="ph ph-lock"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-10">
+                    <p th:if="${error}" th:text="${error}" style="color:red; text-align:center;"></p>
+                </div>
+                <div class="mb-20 flex-between flex-wrap gap-8">
+                    <a th:href="@{/forgot-password}" class="text-main-600 text-15 fw-medium">Lupa Password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-main rounded-pill w-100">Login</button>
+
+                <p class="mt-32 text-gray-600 text-center">
+                    Belum punya akun?
+                    <a th:href="@{/register}" class="text-main-600">Daftar di sini</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- JS Files -->
+<script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/assets/js/boostrap.bundle.min.js}"></script>
+<script th:src="@{/assets/js/phosphor-icon.js}"></script>
+<script th:src="@{/assets/js/file-upload.js}"></script>
+<script th:src="@{/assets/js/plyr.js}"></script>
+<script th:src="@{https://cdn.datatables.net/2.0.8/js/dataTables.min.js}"></script>
+<script th:src="@{/assets/js/full-calendar.js}"></script>
+<script th:src="@{/assets/js/jquery-ui.js}"></script>
+<script th:src="@{/assets/js/editor-quill.js}"></script>
+<script th:src="@{/assets/js/apexcharts.min.js}"></script>
+<script th:src="@{/assets/js/calendar.js}"></script>
+<script th:src="@{/assets/js/jquery-jvectormap-2.0.5.min.js}"></script>
+<script th:src="@{/assets/js/jquery-jvectormap-world-mill-en.js}"></script>
+<script th:src="@{/assets/js/main.js}"></script>
+
+</body>
+</html>
