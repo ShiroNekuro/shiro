@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <p th:text="${user.name}+'`s Task'"></p>
+        <a th:href="@{'/addtask/'+${user.id}}"><button class="btn btn-success">Add Task</button></a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="x : ${usertask}">
+                    <td th:text="${x.id}"></td>
+                    <td th:text="${x.name}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+</body>
+</html>
