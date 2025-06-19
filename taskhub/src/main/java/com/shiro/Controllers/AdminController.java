@@ -61,10 +61,11 @@ public class AdminController {
     }
 
     @GetMapping("/sendreminder/{id}")
-    public void sendreminder(@PathVariable("id") int id) {
+    public String sendreminder(@PathVariable("id") int id) {
         Optional<User> userOptional = userService.findById(id);
         User user = userOptional.get();
         String email = user.getEmail();
         emailService.sendReminder(email);
+        return "redirect:/detail/{id}";
     }
 }

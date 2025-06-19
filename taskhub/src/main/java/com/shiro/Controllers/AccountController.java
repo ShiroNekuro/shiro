@@ -52,6 +52,6 @@ public class AccountController {
         
         user.setRole("user");
         userService.addUser(user);
-        return "test";
+        return "redirect:/login";
     }
 }

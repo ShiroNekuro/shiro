@@ -10,6 +10,7 @@
     <div class="container">
         <p th:text="${user.name}+'`s Task'"></p>
         <a th:href="@{'/addtask/'+${user.id}}"><button class="btn btn-success">Add Task</button></a>
+        <a th:href="@{'/sendreminder/'+${user.id}}"><button class="btn btn-success">Remind</button></a>
         <table class="table">
             <thead>
                 <tr>
