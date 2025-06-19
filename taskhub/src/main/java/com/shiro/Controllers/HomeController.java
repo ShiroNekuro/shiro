@@ -1,11 +1,14 @@
 package com.shiro.Controllers;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.shiro.Entity.User;
 import com.shiro.Service.TaskService;
 import com.shiro.Service.UserService;
 
@@ -20,7 +23,7 @@ public class HomeController {
 
     @Autowired
     private TaskService taskService;
-
+    
     @GetMapping
     public String welcome(HttpSession session, Model model){
 
@@ -32,11 +35,10 @@ public class HomeController {
         if(role.equals("admin")){
             return "redirect:/adminhome";
         } else {
-            model.addAttribute("role", role);
+            User currentuser = (User) session.getAttribute("account");
+            Optional<User> optionaluser = userService.findById(currentuser.getId());
             model.addAttribute("msg", "Testing");
-            model.addAttribute("users", userService.findAlluser());
-            model.addAttribute("tasks", taskService.findAll());
-            model.addAttribute("find", 1);
+            model.addAttribute("tasks", taskService.findByAssigneeAndIsDone(optionaluser, false));
             return "index";
         }
     }    

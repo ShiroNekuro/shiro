@@ -9,4 +9,5 @@ import com.shiro.Entity.User;
 
 public interface  TaskRepo extends CrudRepository<Task, Integer> {
     Iterable<Task> findByAssignee(Optional<User> userid);
+    Iterable<Task> findByAssigneeAndIsDone(Optional<User> userid, Boolean isDone);
 }

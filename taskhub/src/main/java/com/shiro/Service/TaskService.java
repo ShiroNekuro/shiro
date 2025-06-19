@@ -37,4 +37,8 @@ public class TaskService {
     public void updateTask(Task task){
         repo.save(task);
     }
+
+    public Iterable<Task> findByAssigneeAndIsDone(Optional<User> user, Boolean IsDone){
+        return repo.findByAssigneeAndIsDone(user, IsDone);
+    }
 }
