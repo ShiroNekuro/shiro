@@ -20,7 +20,7 @@ public class AccountController {
 
     @GetMapping("/login")
     public String loginpage(Model model, HttpSession session){
-        return "test";
+        return "login";
     }
     @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model){
@@ -33,7 +33,7 @@ public class AccountController {
             return "redirect:";
         } else {
             model.addAttribute("error", "Username atau Password salah");
-            return "test";
+            return "login";
         }
     }
 
@@ -52,6 +52,12 @@ public class AccountController {
         
         user.setRole("user");
         userService.addUser(user);
+        return "redirect:/login";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "redirect:/login";
     }
 }

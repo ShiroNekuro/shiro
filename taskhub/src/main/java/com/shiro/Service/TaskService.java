@@ -17,6 +17,10 @@ public class TaskService {
 
     @Autowired
     private TaskRepo repo;
+    
+    public Optional<Task> findById(Integer id){
+        return repo.findById(id);
+    }
 
     public Iterable<Task> findAll(){
         return repo.findAll();
@@ -40,5 +44,10 @@ public class TaskService {
 
     public Iterable<Task> findByAssigneeAndIsDone(Optional<User> user, Boolean IsDone){
         return repo.findByAssigneeAndIsDone(user, IsDone);
+    }
+
+    
+    public Integer countByAssigneeAndIsDone(User user, Boolean isDone){
+        return repo.countByAssigneeAndIsDone(user,isDone);
     }
 }

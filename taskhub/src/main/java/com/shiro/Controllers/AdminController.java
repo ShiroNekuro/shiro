@@ -16,6 +16,7 @@ import com.shiro.Service.TaskService;
 import com.shiro.Service.UserService;
 
 
+
 @Controller
 public class AdminController {
     @Autowired
@@ -55,6 +56,7 @@ public class AdminController {
         Optional<User> userOptional = userService.findById(id);
         User user = userOptional.get();
         task.setAssignee(user);
+        task.setIsDone(false);
         task.setId(null);
         taskService.addTask(task);
         return "redirect:/detail/{id}";
@@ -67,5 +69,40 @@ public class AdminController {
         String email = user.getEmail();
         emailService.sendReminder(email);
         return "redirect:/detail/{id}";
+    }
+
+    @GetMapping("taskdetail/{id}")
+    public String taskdetail(@PathVariable("id") int id, Model model) {
+        Optional<Task> taskoptional = taskService.findById(id);
+        Task task = taskoptional.get();
+        User user = task.getAssignee();
+        model.addAttribute("currentid", user.getId());
+        model.addAttribute("task", task);
+        return "taskdetail";
+    }
+
+    @GetMapping("/task/edit/{id}")
+    public String taskeditform(Model model, @PathVariable("id") int id){
+        Optional<Task> taskoptional = taskService.findById(id);
+        Task task = taskoptional.get();
+        model.addAttribute("task", task);
+        return "task-edit";
+    }
+
+    @PostMapping("/task/edit/{id}")
+    public String taskedit(Task task, Model model, @PathVariable("id") int id){
+        taskService.updateTask(task);
+        return "redirect:/taskdetail/{id}";
+    }
+    
+    @GetMapping("/task/delete/{id}")
+    public String taskdelete(@PathVariable("id") int id, Model model){
+        Optional<Task> taskoptional = taskService.findById(id);
+        Task task = taskoptional.get();
+        User user = task.getAssignee();
+        int userid = user.getId();
+        task.setAssignee(null);
+        taskService.deleteTask(id);
+        return "redirect:/detail/"+userid;
     }
 }
