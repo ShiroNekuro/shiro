@@ -15,12 +15,14 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Description</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="x : ${usertask}">
                     <td th:text="${x.id}"></td>
                     <td th:text="${x.name}"></td>
+                    <td th:text="${x.desc}"></td>
                 </tr>
             </tbody>
         </table>

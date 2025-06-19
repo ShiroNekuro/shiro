@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.shiro.Entity.Task;
 import com.shiro.Entity.User;
+import com.shiro.Service.EmailService;
 import com.shiro.Service.TaskService;
 import com.shiro.Service.UserService;
 
@@ -22,6 +23,9 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private EmailService emailService;
 
    @GetMapping("/adminhome")
     public String AdminHome(Model model){
@@ -54,5 +58,13 @@ public class AdminController {
         task.setId(null);
         taskService.addTask(task);
         return "redirect:/detail/{id}";
+    }
+
+    @GetMapping("/sendreminder/{id}")
+    public void sendreminder(@PathVariable("id") int id) {
+        Optional<User> userOptional = userService.findById(id);
+        User user = userOptional.get();
+        String email = user.getEmail();
+        emailService.sendReminder(email);
     }
 }

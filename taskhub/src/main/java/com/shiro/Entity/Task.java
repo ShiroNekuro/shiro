@@ -31,6 +31,9 @@ public class Task {
     @JoinColumn(name="assignee")
     private User assignee;
 
+    @Column(name = "isDone", nullable=false, columnDefinition="bit(1) DEFAULT 0")
+    private Boolean isDone;
+
 
     // Setter and Getter
     public Integer getId(){
@@ -71,5 +74,13 @@ public class Task {
 
     public void setAssignee(User user){
         this.assignee = user;
+    }
+
+    public Boolean getIsDone(){
+        return this.isDone;
+    }
+
+    public void setIsDone(Boolean status){
+        this.isDone = status;
     }
 }
