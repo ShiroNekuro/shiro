@@ -36,4 +36,8 @@ public class SubmissionService {
     public Optional<Submission> findByTask(Task task){
         return repo.findByTask(task);
     }
+
+    public Optional<Submission> findById(Integer id){
+        return repo.findById(id);
+    }
 }

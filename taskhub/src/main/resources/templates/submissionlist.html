@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission List</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: white;
+        }
+        .submission-card {
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 0.5px solid black;
+        }
+        .submission-card:hover {
+            transform: scale(1.01);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3>Submitted Tasks</h3>
+            <a th:href="@{/adminhome}" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+
+        <!-- If no submissions -->
+        <div th:if="${#lists.isEmpty(submissions)}" class="text-center text-muted">
+            <h5>No submissions found.</h5>
+        </div>
+
+        <!-- Submission Cards -->
+        <div th:each="s : ${submissions}" th:unless="${#lists.isEmpty(submissions)}" class="card submission-card">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${s.task.name}">Task Title</h5>
+                <p class="card-text">
+                    <strong>Submitted by:</strong> <span th:text="${s.task.assignee.name}">User Name</span><br>
+                </p>
+                <a class="btn btn-primary" th:href="@{'/download/'+${s.id}}" target="_blank">View Submission</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

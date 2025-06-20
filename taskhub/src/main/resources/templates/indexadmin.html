@@ -23,7 +23,10 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid justify-content-between">
-            <a class="navbar-brand" th:href="@{/adminhome}">Dashboard</a>
+            <div>
+                <a class="navbar-brand" th:href="@{/adminhome}">Dashboard</a>
+                <a class="navbar-brand" th:href="@{/submissionlist}">Submission List</a>
+            </div>
             <form th:action="@{/logout}" method="post" class="mb-0">
                 <button type="submit" class="btn btn-outline-danger">Logout</button>
             </form>
